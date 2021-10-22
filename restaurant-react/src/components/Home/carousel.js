@@ -1,6 +1,5 @@
 import Carousel from 'react-bootstrap/Carousel'
 import React, {Component} from "react";
-import firstImage from '../../images/first.png';
 import secondImage from '../../images/second.jpg';
 import  forthImage from '../../images/forth.jpg';
 

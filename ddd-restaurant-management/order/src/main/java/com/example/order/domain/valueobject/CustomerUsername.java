@@ -1,6 +1,5 @@
 package com.example.order.domain.valueobject;
 
-import com.example.sharedkernel.domain.base.DomainObjectId;
 import com.sun.istack.NotNull;
 
 import javax.persistence.Embeddable;

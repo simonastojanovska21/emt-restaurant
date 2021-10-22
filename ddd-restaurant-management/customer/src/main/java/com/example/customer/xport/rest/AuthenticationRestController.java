@@ -1,12 +1,15 @@
 package com.example.customer.xport.rest;
 
-import com.example.customer.domain.model.Customer;
 import com.example.customer.domain.model.UserDto;
 import com.example.customer.service.UserService;
 import com.example.customer.service.forms.RegisterForm;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+//Rest controller so koj frontend aplikacijata komunucira so customer backend applikacijata
+//Ima 2 metodi, so edniot se ovozmozuva registracija na korisnici, a so drugiot se zemaat informacii za korisnik
+//So najavata na korisnici se spravuva spring security
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")

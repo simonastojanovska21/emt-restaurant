@@ -1,6 +1,6 @@
 package com.example.customer.service.impl;
 
-import com.example.customer.domain.exceptions.InvalidUsernameException;
+import com.example.customer.domain.exceptions.UsernameAlreadyExistsException;
 import com.example.customer.domain.exceptions.PasswordsDoNotMatchException;
 import com.example.customer.domain.exceptions.UserNotFoundException;
 import com.example.customer.domain.model.Customer;
@@ -19,7 +19,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.validation.ConstraintViolationException;
 import javax.validation.Validator;
 import java.util.Objects;
 import java.util.Optional;
@@ -31,17 +30,16 @@ public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
-    private final Validator validator;
 
     @Override
-    public Optional<Customer> register(RegisterForm registerForm) throws PasswordsDoNotMatchException, InvalidUsernameException {
+    public Optional<Customer> register(RegisterForm registerForm) throws PasswordsDoNotMatchException, UsernameAlreadyExistsException {
         Objects.requireNonNull(registerForm,"register form must not be null");
 
         if(!registerForm.getPassword().equals(registerForm.getRepeatedPassword()))
             throw new PasswordsDoNotMatchException();
 
         if(this.userRepository.findByUsername(registerForm.getUsername()).isPresent())
-            throw new InvalidUsernameException();
+            throw new UsernameAlreadyExistsException();
 
         Customer customer=toDomainObject(registerForm);
         this.userRepository.saveAndFlush(customer);
@@ -61,10 +59,14 @@ public class UserServiceImpl implements UserService {
         return userRepository.findByUsername(s).orElseThrow(()->new UsernameNotFoundException(s));
     }
 
+    /*
+    private metod koj se korsiti za transformacija na register formata koja se isprakja od frontend do customer object koj
+    ke se cuva vo baza
+     */
     private Customer toDomainObject(RegisterForm registerForm){
         String encrypted=this.passwordEncoder.encode(registerForm.getPassword());
-        FullName fullName=new FullName(registerForm.getName(),registerForm.getSurname());
-        PaymentInfo paymentInfo=new PaymentInfo(registerForm.getNameOfCardHolder(),registerForm.getCreditCardNumber(),registerForm.getValidThrough(),registerForm.getCCV());
+        FullName fullName=FullName.valueOf(registerForm.getName(),registerForm.getSurname());
+        PaymentInfo paymentInfo=PaymentInfo.valueOf(registerForm.getNameOfCardHolder(),registerForm.getCreditCardNumber(),registerForm.getValidThrough(),registerForm.getCCV());
         Address address=new Address(registerForm.getCountry(),registerForm.getCity(),registerForm.getStreet(),registerForm.getBuildingNumber());
         return Customer.build(registerForm.getUsername(),encrypted,fullName,registerForm.getTelephoneNumber(),
                 paymentInfo,address, Role.ROLE_CUSTOMER);

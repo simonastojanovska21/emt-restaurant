@@ -4,6 +4,7 @@ import com.example.sharedkernel.domain.config.TopicHolder;
 import com.example.sharedkernel.domain.events.DomainEvent;
 import lombok.Getter;
 
+//Ovoj event se isprakja od order do meal mikroservisot, za da se izvesti deka soodvetnoto jadenje e otstraneto od naracka
 @Getter
 public class MealRemovedFromOrder extends DomainEvent {
 

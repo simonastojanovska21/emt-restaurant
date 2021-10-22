@@ -6,7 +6,7 @@ import lombok.Getter;
 
 import javax.persistence.Embeddable;
 
-//Vrednosen objekt vo koj se cuvaat ime i prezime na korisnik, za skrateno poshuvame FullName
+//Vrednosen objekt so koj se cuvaat ime i prezime na korisnik, za skrateno poshuvame FullName
 @Embeddable
 @Getter
 public class FullName implements ValueObject {
@@ -21,7 +21,7 @@ public class FullName implements ValueObject {
         this.surname=null;
     }
 
-    public FullName(@NotNull String name, @NotNull String surname)
+    private FullName(@NotNull String name, @NotNull String surname)
     {
         this.name=name;
         this.surname=surname;

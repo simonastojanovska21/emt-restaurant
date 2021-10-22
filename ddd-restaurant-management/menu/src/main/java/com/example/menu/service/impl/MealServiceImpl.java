@@ -29,6 +29,9 @@ public class MealServiceImpl implements MealService {
     private final MealRepository mealRepository;
     private final Validator validator;
 
+    /*
+    metod koj se koristi za dodavanje na novo jadenje vo menito
+     */
     @Override
     public Optional<Meal> addNewMealToMenu(MealForm mealForm) {
         Objects.requireNonNull(mealForm,"meal form should not be null");
@@ -41,43 +44,51 @@ public class MealServiceImpl implements MealService {
         return Optional.of(meal);
     }
 
+    /*
+    metod koj se koristi za prevzemanje detali za nekoe jadenje
+     */
     @Override
     public Optional<Meal> getDetailsForMeal(MealId id) throws MealIdNotFoundException {
         return this.mealRepository.findById(id);
     }
 
+    /*
+    metod so koj zemame lista od site jadenja vo menito
+     */
     @Override
     public List<Meal> findAllMeals() {
         return this.mealRepository.findAll();
     }
 
+    /*
+    metod koj se koristi sekogash koga jadenjeto ke se dodade vo nekoja naracka, se povikuva
+    metod od Meal klasata so koj brojot na naracki za jadenjeto se zgolemuva
+     */
     @Override
-    public List<Meal> findAllMealsWithMealId(MealDto mealDto) throws MealIdNotFoundException {
-        List<MealId> mealIdList=mealDto.getIds().stream().map(MealId::of).collect(Collectors.toList());
-        return this.mealRepository.findAllById(mealIdList);
-    }
-
-    @Override
-    public Optional<Meal> mealAddedInOrder(MealId mealId, int number) throws MealIdNotFoundException {
+    public void mealAddedInOrder(MealId mealId, int number) throws MealIdNotFoundException {
         Meal meal=this.mealRepository.findById(mealId).orElseThrow(MealIdNotFoundException::new);
         meal.addOrdersForMeal(number);
         this.mealRepository.saveAndFlush(meal);
-        return Optional.of(meal);
     }
 
+    /*
+    metod koj se koristi sekogash koga jadenjeto ke se otstrani od nekoja naracka, se povikuva
+    metod od Meal klasata so koj brojot na naracki za jadenjeto se namaluva
+     */
     @Override
-    public Optional<Meal> mealRemovedFromOrder(MealId mealId, int number) throws MealIdNotFoundException {
+    public void mealRemovedFromOrder(MealId mealId, int number) throws MealIdNotFoundException {
         Meal meal=this.mealRepository.findById(mealId).orElseThrow(MealIdNotFoundException::new);
         meal.removeOrdersForMeal(number);
         this.mealRepository.saveAndFlush(meal);
-        return Optional.of(meal);
     }
 
+    /*
+    private metod koj se koristi za kreiranje na Meal od MealForm objekt
+     */
     private Meal toDomainObject(MealForm mealForm){
         Money mealPrice=new Money(Currency.USD, mealForm.getMealPrice());
         Ingredient ingredientsForMeal=new Ingredient(mealForm.getIngredientsForMeal());
-        Meal meal=Meal.build(mealForm.getMealName(),mealForm.getMealDescription(),mealPrice,
+        return Meal.build(mealForm.getMealName(),mealForm.getMealDescription(),mealPrice,
                 mealForm.getMealType(),ingredientsForMeal,mealForm.getImageUrl());
-        return meal;
     }
 }

@@ -4,7 +4,6 @@ import com.example.order.domain.exceptions.OrderIdNotFoundException;
 import com.example.order.domain.exceptions.OrderItemIdNotFoundException;
 import com.example.order.domain.model.Order;
 import com.example.order.domain.model.OrderId;
-import com.example.order.domain.model.OrderItemId;
 import com.example.order.domain.model.OrderStatus;
 import com.example.order.service.forms.OrderForm;
 import com.example.order.service.forms.OrderItemForm;
@@ -29,9 +28,9 @@ public interface OrderService {
 
     Optional<Order> cancelOrder(OrderId orderId) throws OrderIdNotFoundException;
 
-    Optional<Order> markOrderAsDelivered(OrderId orderId) throws OrderIdNotFoundException;
+    void markOrderAsDelivered(OrderId orderId) throws OrderIdNotFoundException;
 
-    Optional<Order> changeOrderStatus(OrderId orderId, OrderStatus orderStatus) throws OrderIdNotFoundException;
+    void changeOrderStatus(OrderId orderId, OrderStatus orderStatus) throws OrderIdNotFoundException;
 
     Optional<Order> getOrderForUser(String username);
 

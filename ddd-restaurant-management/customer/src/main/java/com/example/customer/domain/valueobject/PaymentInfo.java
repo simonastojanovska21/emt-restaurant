@@ -28,7 +28,7 @@ public class PaymentInfo implements ValueObject {
         this.CCV=null;
     }
 
-    public PaymentInfo(@NotNull String nameOfCardHolder,@NotNull Long creditCardNumber, @NotNull String validThrough, @NotNull String CCV)
+    private PaymentInfo(@NotNull String nameOfCardHolder,@NotNull Long creditCardNumber, @NotNull String validThrough, @NotNull String CCV)
     {
         this.nameOfCardHolder=nameOfCardHolder;
         this.creditCardNumber=creditCardNumber;

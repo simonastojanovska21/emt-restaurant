@@ -1,8 +1,7 @@
 import React, {Component} from "react";
-import {Link, Redirect} from "react-router-dom";
+import {Link} from "react-router-dom";
 import AddRemoveOrderItemQuantity from "./AddRemoveOrderItemQuantity";
 import OrderService from "../../services/orderService";
-import MenuService from "../../services/menuService"
 import MealInOrder from "./MealInOrder";
 
 class Order extends Component{

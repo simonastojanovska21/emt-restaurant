@@ -9,6 +9,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 
+//Servis koj slusha za publikuvanje na SuccessfullyPaidForOrder nastanot od order mikroservisot
+//otkako ke se publikuva ovoj nastan se kreira nova naracka so potrebnite podatoci
 @Service
 @AllArgsConstructor
 public class DeliveriesEventListener {

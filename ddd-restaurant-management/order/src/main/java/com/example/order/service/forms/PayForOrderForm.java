@@ -5,6 +5,7 @@ import lombok.Getter;
 
 import javax.validation.constraints.NotNull;
 
+//forma koja se koristi od frontend za plakjanje na nekoja naracka
 @Getter
 public class PayForOrderForm {
 

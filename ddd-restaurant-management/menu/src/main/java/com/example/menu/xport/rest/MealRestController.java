@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Arrays;
 import java.util.List;
 
+//Rest kontroler koj se koristi od frontend applikacijata
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("/api/meal")
@@ -45,8 +46,4 @@ public class MealRestController {
         return Arrays.asList(MealType.values());
     }
 
-    @PostMapping("/getDetailsForMealsWithIds")
-    public List<Meal> getDetailsForMealsWithIds(@RequestBody MealDto mealDto){
-        return this.mealService.findAllMealsWithMealId(mealDto);
-    }
 }

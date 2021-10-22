@@ -9,6 +9,7 @@ import lombok.Data;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
+//forma koja se koristi pri dodavanje na jadenje
 @Data
 public class MealForm {
 

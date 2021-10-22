@@ -60,10 +60,6 @@ class App extends Component {
 
                         <Route path={"/meal/details/:id"} exact render={() =>
                             <MealDetails selectedMeal={this.state.selectedMeal}
-                                         ingredients={this.state.ingredients}
-                                         topOrderedMeals={this.state.top5Meals}
-                                         onDeleteMeal={this.deleteMealFromMenu}
-                                         onMealClick={this.getMealDetails}
                                          onAddItemToOrder={this.addOrderItemInOrder}
                             />}/>
                         <Route path={"/menu"} exact render={() =>
@@ -115,9 +111,12 @@ class App extends Component {
             this.getInfoAboutUser(currentUser.username);
 
         }
-
+        // console.log(localStorage.getItem("selectedMealId"))
         const mealId = localStorage.getItem("selectedMealId")
-        mealId !== null ? this.getDetailsForMeal(mealId) : this.getAllMeals();
+        //mealId !== null ? this.getDetailsForMeal(mealId) : this.getAllMeals();
+        if(mealId!==null){
+            this.getDetailsForMeal(mealId)
+        }
 
         console.log(localStorage.getItem("orderId"))
         const orderId = localStorage.getItem("orderId");
@@ -170,14 +169,15 @@ class App extends Component {
     }
 
     getDetailsForMeal=(id)=>{
+        // localStorage.setItem("selectedMealId",id)
         MenuService.getDetailsForMeal(id)
             .then((data)=>{
-                this.setState(({
-                    selectedMeal:data.data
-                }))
-                //console.log('localstorage')
+                this.setState({
+                    selectedMeal : data.data
+                })
+                // console.log('localstorage')
                 localStorage.setItem("selectedMealId",id)
-                //console.log(localStorage.getItem("selectedMealId"))
+                console.log(localStorage.getItem("selectedMealId"))
             })
     }
 

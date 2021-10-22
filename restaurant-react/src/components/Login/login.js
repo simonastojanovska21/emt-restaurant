@@ -27,7 +27,9 @@ const Login=(props)=>{
 
         props.onLoginUser(username,password);
 
-        history.push("/menu");
+        setTimeout(()=>{
+            history.push("/menu");
+        },2000)
     }
 
     (function () {
@@ -54,6 +56,11 @@ const Login=(props)=>{
                 <div className={"ps-3 pe-3"}>
                     <h1 className={"title text-center"}>Login</h1>
                     <hr/>
+                    { localStorage.getItem("loginError") === "yes" &&
+                    <div className="alert alert-danger" id="invalidData" role="alert">
+                        Invalid username or password.
+                    </div>
+                    }
                     <form id={"loginData"} className="row g-3 needs-validation" noValidate onSubmit={onFormSubmit}>
                         <div className="col-md-12">
                             <label htmlFor="username" className="form-label">Email</label>

@@ -7,6 +7,9 @@ import lombok.AllArgsConstructor;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
+//Publisher na domain event od delivery mikroservisot
+//se publikuva nastanot OrderSuccessfullyDelivered do order mikroservisot so cel da se smeni
+// statusot na narackata vo DELIVERD
 @Service
 @AllArgsConstructor
 public class DomainEventPublisherImpl implements DomainEventPublisher {

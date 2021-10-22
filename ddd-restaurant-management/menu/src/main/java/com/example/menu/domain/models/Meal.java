@@ -21,10 +21,14 @@ public class Meal extends AbstractEntity<MealId> {
 
     private Money mealPrice;
 
+    //tip na jadenje, enumeracija
+    @Enumerated(value = EnumType.STRING)
     private MealType mealType;
 
+    //vrednosen objekt koj gi oznacuva sostojkite na jadenjeto
     private Ingredient ingredientsForMeal;
 
+    //vrednosen objekt koj go ozanuva brojot na naracki za sekoe jadenje
     private NumberOfOrdersForMeal numberOfOrdersForMeal;
 
     private String imageUrl;

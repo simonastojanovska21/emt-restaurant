@@ -6,17 +6,17 @@ import com.example.sharedkernel.domain.config.TopicHolder;
 import com.example.sharedkernel.domain.events.DomainEvent;
 import com.example.sharedkernel.domain.events.meal.MealAddedInOrder;
 import com.example.sharedkernel.domain.events.meal.MealRemovedFromOrder;
+import lombok.AllArgsConstructor;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 
+//Servis koj slusha za publikuvanje na nastanite MealAddedInOrder i MealRemovedFromOrder od order mikroservisot
+//otkako ke se publikuva nekoj od ovie nastanit se povukuva soodvetniot metod od servisnata logika
 @Service
+@AllArgsConstructor
 public class MealEventListener {
 
     private final MealService mealService;
-
-    public MealEventListener(MealService mealService) {
-        this.mealService = mealService;
-    }
 
     @KafkaListener(topics = TopicHolder.TOPIC_MEAL_ADDED_IN_ORDER,groupId = "mealDeliveries")
     public void consumeMealAddedInOrder(String jsonMessage){

@@ -1,7 +1,6 @@
 package com.example.order.domain.model;
 
 import com.example.order.domain.valueobject.CustomerUsername;
-import com.example.order.domain.valueobject.Meal;
 import com.example.order.domain.valueobject.MealId;
 import com.example.order.domain.valueobject.Quantity;
 import com.example.sharedkernel.domain.base.AbstractEntity;

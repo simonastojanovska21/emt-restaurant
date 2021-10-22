@@ -3,6 +3,7 @@ package com.example.customer.domain.model;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
+//Data transfer objekt koj se koristi za prevzemanje na konkretni informacci za korsinikot od baza
 @Getter
 @AllArgsConstructor
 public class UserDto {

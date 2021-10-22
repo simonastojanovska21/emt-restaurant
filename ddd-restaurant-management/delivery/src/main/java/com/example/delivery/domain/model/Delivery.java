@@ -14,19 +14,25 @@ import java.time.temporal.ChronoUnit;
 @Getter
 public class Delivery extends AbstractEntity<DeliveryId> {
 
+    //vremeto na dostava na narackata
     private Instant timeForDelivery;
 
+    //adresa za dostava na narackata
     private Address addressForDelivery;
 
+    //id-to na narackata na koja se odnesuva dostavata
     @AttributeOverride(name = "id", column = @Column(name = "order_id", nullable = false))
     private OrderId orderForDelivery;
 
+    //delivered atributot e postaven na false, a otkako ke se oznaci narackata kako dostavena, se postavuva na true
     private boolean delivered;
 
+    //kreiranje na nov delivery objekt so id
     protected Delivery(){
         super(DeliveryId.randomId(DeliveryId.class));
     }
 
+    //kreiranje na delivery object so adresa i id na naracka
     public static Delivery build(Address addressForDelivery, OrderId orderForDelivery){
         Delivery delivery=new Delivery();
         delivery.timeForDelivery=Instant.now().plus(1, ChronoUnit.HOURS);
@@ -36,6 +42,7 @@ public class Delivery extends AbstractEntity<DeliveryId> {
         return delivery;
     }
 
+    //metod koj se koristi za da se oznaci nekoja naracka deka e dostavena
     public void finishDelivery(){
         this.delivered=true;
     }

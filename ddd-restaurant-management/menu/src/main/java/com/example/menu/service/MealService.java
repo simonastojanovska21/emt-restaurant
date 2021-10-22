@@ -17,10 +17,8 @@ public interface MealService {
 
     List<Meal> findAllMeals();
 
-    List<Meal> findAllMealsWithMealId(MealDto mealDto) throws MealIdNotFoundException;
+    void mealAddedInOrder(MealId mealId, int number) throws MealIdNotFoundException;
 
-    Optional<Meal> mealAddedInOrder(MealId mealId, int number) throws MealIdNotFoundException;
-
-    Optional<Meal> mealRemovedFromOrder(MealId mealId,int number) throws MealIdNotFoundException;
+    void mealRemovedFromOrder(MealId mealId, int number) throws MealIdNotFoundException;
 
 }

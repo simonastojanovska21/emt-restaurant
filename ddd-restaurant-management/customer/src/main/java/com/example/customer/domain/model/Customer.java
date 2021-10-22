@@ -12,6 +12,9 @@ import javax.persistence.*;
 import java.util.Collection;
 import java.util.Collections;
 
+//Klasa koja korenspondira so podatocite koi se cuvaat za eden korisnik vo baza na podatoci
+//Kako ID na tabelata customer se zema soodvetniot username koj korisnikot go vnesuva
+//Se koristi spring security pa ovaa klasa go implementira interfejsot UserDetails i e napraveno oveeride na soodvetnite metodi
 @Entity
 @Table(name = "customer")
 @Getter

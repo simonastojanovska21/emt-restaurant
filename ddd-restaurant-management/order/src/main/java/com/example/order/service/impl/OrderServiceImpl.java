@@ -21,7 +21,6 @@ import com.example.sharedkernel.domain.events.order.SuccessfullyPaidForOrder;
 import com.example.sharedkernel.domain.valueObjects.Currency;
 import com.example.sharedkernel.domain.valueObjects.Money;
 import com.example.sharedkernel.infra.DomainEventPublisher;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.stereotype.Service;
@@ -77,6 +76,9 @@ public class OrderServiceImpl implements OrderService {
         return orderRepository.findById(id);
     }
 
+    /*
+    metod koj ja vrakja cenata na narackata
+     */
     @Override
     public Money getTotalForOrder(OrderId orderId) {
         Order order=this.orderRepository.findById(orderId).orElseThrow(OrderIdNotFoundException::new);
@@ -85,7 +87,8 @@ public class OrderServiceImpl implements OrderService {
 
     /*
     Metod so koj se vrshi plakjane na naracka. Otkako ke se plati narackata treba da se kreira nov delivery object
-    Za taa cel treba da se publikuva event kon delivery microservice, SuccessfullyPayedForOrder
+    Za taa cel treba da se publikuva event kon delivery microservice, SuccessfullyPayedForOrder, a stausot na narackata se menuva
+    vo PAID
      */
     @SneakyThrows
     @Override
@@ -116,8 +119,8 @@ public class OrderServiceImpl implements OrderService {
     Koga narackata ke bide dostavena do korisnikot istata treba da ima status Delivered
      */
     @Override
-    public Optional<Order> markOrderAsDelivered(OrderId orderId) throws OrderIdNotFoundException {
-        return this.changeOrderStatus(orderId,OrderStatus.DELIVERED);
+    public void markOrderAsDelivered(OrderId orderId) throws OrderIdNotFoundException {
+        this.changeOrderStatus(orderId, OrderStatus.DELIVERED);
     }
 
     /*
@@ -125,11 +128,10 @@ public class OrderServiceImpl implements OrderService {
     i od PAID vo DELIVERED
      */
     @Override
-    public Optional<Order> changeOrderStatus(OrderId orderId, OrderStatus orderStatus) throws OrderIdNotFoundException {
+    public void changeOrderStatus(OrderId orderId, OrderStatus orderStatus) throws OrderIdNotFoundException {
         Order order=this.orderRepository.findById(orderId).orElseThrow(OrderIdNotFoundException::new);
         order.changeOrderStatus(orderStatus);
         orderRepository.saveAndFlush(order);
-        return Optional.of(order);
     }
 
     /*

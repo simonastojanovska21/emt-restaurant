@@ -9,6 +9,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 
+//Servis koj slusha za publikuvanje na OrderSuccessfullyDelivered nastanot od delivery mikroservisot
+//otkako ke se publikuva ovoj nastan narackata se oznacuva za dostavena
 @Service
 @AllArgsConstructor
 public class OrdersEventsListener {

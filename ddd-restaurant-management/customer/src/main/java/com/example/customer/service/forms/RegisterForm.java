@@ -4,6 +4,10 @@ import lombok.Data;
 
 import javax.validation.constraints.NotNull;
 
+//Pri registracija korisnikot gi vnesuva informaciite koi se baraat od nego.
+//Site tie se grupirano vo klasata RegisterForm i od frontend aplikacijata se isprakjaat na backend aplikacijata preku
+// soodvetniot metod
+
 @Data
 public class RegisterForm {
 

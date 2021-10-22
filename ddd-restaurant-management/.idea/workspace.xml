@@ -42,7 +42,7 @@
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit5" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5" value="" />
     <property name="jdk.selected.JAVA_MODULE" value="15 (2)" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../ddd-product-ordering-master" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -129,6 +129,10 @@
       <workItem from="1632262517542" duration="381000" />
       <workItem from="1632311168341" duration="1539000" />
       <workItem from="1632315624818" duration="19140000" />
+      <workItem from="1634677923147" duration="4371000" />
+      <workItem from="1634758749381" duration="4593000" />
+      <workItem from="1634838017197" duration="7583000" />
+      <workItem from="1634913085475" duration="1671000" />
     </task>
     <servers />
   </component>

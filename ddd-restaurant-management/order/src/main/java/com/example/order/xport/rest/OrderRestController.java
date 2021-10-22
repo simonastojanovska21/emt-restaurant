@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+//Rest kontoler koj se koristi od frontend aplikacijata
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("/api/orders")

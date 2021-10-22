@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+//Rest kontroler koj se koristi od frontend aplikacijata
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("/api/delivery")

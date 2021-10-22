@@ -6,6 +6,7 @@ import com.example.customer.domain.model.Role;
 import lombok.Data;
 import org.springframework.security.core.userdetails.UserDetails;
 
+//Data transfer object koj se koristi za JWT avtentikacija
 @Data
 public class UserDetailsDto {
     private String username;
